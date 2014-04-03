@@ -1,0 +1,18 @@
+<h1>Edit <%= @tag.name %></h1>
+
+<% if @tag.errors.any? %>
+  <h3> Please fix these errors: </h3>
+
+  <ul>
+    <% @tag.errors.full_messages.each do |message| %>
+       <li><%= message %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/tags/<%= @tag.id %>"  method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="tag_name">Tag</label>
+  <input id="tag_name" name="name" type = "text" value="<%= @tag.name %>">
+  <button>Update</button>
+</form>

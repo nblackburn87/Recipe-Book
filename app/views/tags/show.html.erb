@@ -1,0 +1,9 @@
+<h1><%= @tag.name %> Tag</h1>
+
+<% @tag.recipes.each do |recipe| %>
+  <li>
+    <a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a>
+  </li>
+<% end %>
+
+<a href="/tags">Return to main tag listing</a>
