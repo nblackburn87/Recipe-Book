@@ -6,6 +6,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'less-rails-bootstrap'
+gem 'therubyracer'
 
 group :development do
   gem 'better_errors'
@@ -19,4 +21,5 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'pry'
 end

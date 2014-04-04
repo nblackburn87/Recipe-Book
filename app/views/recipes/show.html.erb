@@ -2,4 +2,10 @@
 
 <p><%= @recipe.description %></p>
 
+<% @recipe.tags.each do |tag| %>
+  <li>
+    <%= tag.name %>
+  </li>
+<% end %>
+
 <a href="/recipes">Return to the Recipe Index</a>

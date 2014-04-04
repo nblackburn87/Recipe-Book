@@ -13,6 +13,18 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(:title => params[:title],
                          :description => params[:description])
+
+    @found_tag_1 = Tag.find_by(:name => params[:tag_1][:name])
+    @found_tag_2 = Tag.find_by(:name => params[:tag_2][:name])
+    if @found_tag_1 != nil && @found_tag_2 != nil
+      @recipe.tags << [@found_tag_1, @found_tag_2]
+    elsif @found_tag_1 == nil && @found_tag_2 != nil
+      @recipe.tags << @found_tag_2
+    elsif @found_tag_1 != nil && @found_tag_2 == nil
+      @recipe.tags << [@found_tag_1]
+    else
+    end
+
     if @recipe.save
       flash[:notice] = "Your recipe was successfully saved!"
        redirect_to("/recipes")
@@ -35,7 +47,15 @@ class RecipesController < ApplicationController
 
     @found_tag_1 = Tag.find_by(:name => params[:tag_1][:name])
     @found_tag_2 = Tag.find_by(:name => params[:tag_2][:name])
-    @recipe.tags << [@found_tag_1, @found_tag_2]
+    if @found_tag_1 != nil && @found_tag_2 != nil
+      @recipe.tags << [@found_tag_1, @found_tag_2]
+    elsif @found_tag_1 == nil && @found_tag_2 != nil
+      @recipe.tags << @found_tag_2
+    elsif @found_tag_1 != nil && @found_tag_2 == nil
+      @recipe.tags << [@found_tag_1]
+    else
+    end
+
     if @recipe.save
       flash[:notice] = "Your update was successfully saved!"
        redirect_to("/recipes")
